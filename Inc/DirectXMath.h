@@ -19,6 +19,8 @@
 
 #define DIRECTX_MATH_VERSION 311
 
+#if !(defined(__clang__) || defined(__GNUC__))
+
 #if defined(_MSC_VER) && (_MSC_VER < 1800)
 #error DirectX Math Visual C++ 2013 or later.
 #endif
@@ -99,7 +101,20 @@
 #endif
 #endif // !_XM_ARM_NEON_INTRINSICS_ && !_XM_SSE_INTRINSICS_ && !_XM_NO_INTRINSICS_
 
-#if !defined(_XM_NO_XMVECTOR_OVERLOADS_) && defined(__clang__)
+#else
+
+#define __declspec(...)
+
+#define _XM_NO_INTRINSICS_
+
+#define XM_CONST const
+#define XM_CONSTEXPR
+#define XM_CALLCONV
+#define XM_CTOR_DEFAULT =default;
+
+#endif
+
+#if !defined(_XM_NO_XMVECTOR_OVERLOADS_) && (defined(__clang__) || defined(__GNUC__))
 #define _XM_NO_XMVECTOR_OVERLOADS_
 #endif
 
@@ -143,7 +158,28 @@
 #endif
 #endif // !_XM_NO_INTRINSICS_
 
+#if !defined(__clang__) && !defined(__GNUC__)
+
 #include <sal.h>
+
+#else
+
+#define _In_
+#define _Out_
+#define _In_opt_
+#define _Out_opt_
+#define _In_reads_(...)
+#define _In_reads_bytes_(...)
+#define _Out_writes_(...)
+#define _Out_writes_bytes_(...)
+#define _Analysis_assume_(...)
+#define _Out_writes_bytes_(...)
+#define _Success_(...)
+
+#define _Use_decl_annotations_
+
+#endif
+
 #include <assert.h>
 
 #pragma warning(push)
