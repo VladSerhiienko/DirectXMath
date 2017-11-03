@@ -107,6 +107,8 @@
 
 #define _XM_NO_INTRINSICS_
 
+#define XMGLOBALCONST static
+
 #define XM_CONST const
 #define XM_CONSTEXPR
 #define XM_CALLCONV
