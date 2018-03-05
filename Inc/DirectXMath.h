@@ -108,8 +108,9 @@
 
 #endif
 
-#if !defined(_XM_NO_XMVECTOR_OVERLOADS_) && (defined(__clang__) || defined(__GNUC__))
-#define _XM_NO_XMVECTOR_OVERLOADS_
+#if !defined(_XM_NO_XMVECTOR_OVERLOADS_) && \
+    (defined(__clang__) || defined(__GNUC__))
+// #define _XM_NO_XMVECTOR_OVERLOADS_
 #endif
 
 #pragma warning(push)
