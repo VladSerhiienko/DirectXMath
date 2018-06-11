@@ -1,12 +1,8 @@
 //-------------------------------------------------------------------------------------
 // DirectXMathVector.inl -- SIMD C++ Math library
 //
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-// PARTICULAR PURPOSE.
-//  
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 //
 // http://go.microsoft.com/fwlink/?LinkID=615560
 //-------------------------------------------------------------------------------------
@@ -2309,7 +2305,7 @@ namespace Internal
     }
 };
 
-#if !defined(_XM_NO_INTRINSICS_) && !defined(__clang__)
+#if !defined(_XM_NO_INTRINSICS_) && !defined(__clang__) && !defined(__INTEL_COMPILER)
 #pragma float_control(push)
 #pragma float_control(precise, on)
 #endif
@@ -2358,7 +2354,7 @@ inline XMVECTOR XM_CALLCONV XMVectorRound
 #endif
 }
 
-#if !defined(_XM_NO_INTRINSICS_) && !defined(__clang__)
+#if !defined(_XM_NO_INTRINSICS_) && !defined(__clang__) && !defined(__INTEL_COMPILER)
 #pragma float_control(pop)
 #endif
 

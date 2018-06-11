@@ -1,12 +1,8 @@
 //-------------------------------------------------------------------------------------
 // DirectXMathMatrix.inl -- SIMD C++ Math library
 //
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-// PARTICULAR PURPOSE.
-//  
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 //
 // http://go.microsoft.com/fwlink/?LinkID=615560
 //-------------------------------------------------------------------------------------
@@ -3216,26 +3212,6 @@ inline XMFLOAT3X3::XMFLOAT3X3
     }
 }
 
-//------------------------------------------------------------------------------
-
-inline XMFLOAT3X3& XMFLOAT3X3::operator=
-(
-    const XMFLOAT3X3& Float3x3
-)
-{
-    _11 = Float3x3._11;
-    _12 = Float3x3._12;
-    _13 = Float3x3._13;
-    _21 = Float3x3._21;
-    _22 = Float3x3._22;
-    _23 = Float3x3._23;
-    _31 = Float3x3._31;
-    _32 = Float3x3._32;
-    _33 = Float3x3._33;
-
-    return *this;
-}
-
 /****************************************************************************
  *
  * XMFLOAT4X3 operators
@@ -3268,40 +3244,35 @@ inline XMFLOAT4X3::XMFLOAT4X3
     m[3][2] = pArray[11];
 }
 
-//------------------------------------------------------------------------------
-
-inline XMFLOAT4X3& XMFLOAT4X3::operator=
-(
-    const XMFLOAT4X3& Float4x3
-)
-{
-    XMVECTOR V1 = XMLoadFloat4((const XMFLOAT4*)&Float4x3._11);
-    XMVECTOR V2 = XMLoadFloat4((const XMFLOAT4*)&Float4x3._22);
-    XMVECTOR V3 = XMLoadFloat4((const XMFLOAT4*)&Float4x3._33);
-
-    XMStoreFloat4((XMFLOAT4*)&_11, V1);
-    XMStoreFloat4((XMFLOAT4*)&_22, V2);
-    XMStoreFloat4((XMFLOAT4*)&_33, V3);
-
-    return *this;
-}
+/****************************************************************************
+*
+* XMFLOAT3X4 operators
+*
+****************************************************************************/
 
 //------------------------------------------------------------------------------
-
-inline XMFLOAT4X3A& XMFLOAT4X3A::operator=
+_Use_decl_annotations_
+inline XMFLOAT3X4::XMFLOAT3X4
 (
-    const XMFLOAT4X3A& Float4x3
+    const float* pArray
 )
 {
-    XMVECTOR V1 = XMLoadFloat4A((const XMFLOAT4A*)&Float4x3._11);
-    XMVECTOR V2 = XMLoadFloat4A((const XMFLOAT4A*)&Float4x3._22);
-    XMVECTOR V3 = XMLoadFloat4A((const XMFLOAT4A*)&Float4x3._33);
+    assert(pArray != nullptr);
 
-    XMStoreFloat4A((XMFLOAT4A*)&_11, V1);
-    XMStoreFloat4A((XMFLOAT4A*)&_22, V2);
-    XMStoreFloat4A((XMFLOAT4A*)&_33, V3);
+    m[0][0] = pArray[0];
+    m[0][1] = pArray[1];
+    m[0][2] = pArray[2];
+    m[0][3] = pArray[3];
 
-    return *this;
+    m[1][0] = pArray[4];
+    m[1][1] = pArray[5];
+    m[1][2] = pArray[6];
+    m[1][3] = pArray[7];
+
+    m[2][0] = pArray[8];
+    m[2][1] = pArray[9];
+    m[2][2] = pArray[10];
+    m[2][3] = pArray[11];
 }
 
 /****************************************************************************
@@ -3338,45 +3309,5 @@ inline XMFLOAT4X4::XMFLOAT4X4
     m[3][1] = pArray[13];
     m[3][2] = pArray[14];
     m[3][3] = pArray[15];
-}
-
-//------------------------------------------------------------------------------
-
-inline XMFLOAT4X4& XMFLOAT4X4::operator=
-(
-    const XMFLOAT4X4& Float4x4
-)
-{
-    XMVECTOR V1 = XMLoadFloat4((const XMFLOAT4*)&Float4x4._11);
-    XMVECTOR V2 = XMLoadFloat4((const XMFLOAT4*)&Float4x4._21);
-    XMVECTOR V3 = XMLoadFloat4((const XMFLOAT4*)&Float4x4._31);
-    XMVECTOR V4 = XMLoadFloat4((const XMFLOAT4*)&Float4x4._41);
-
-    XMStoreFloat4((XMFLOAT4*)&_11, V1);
-    XMStoreFloat4((XMFLOAT4*)&_21, V2);
-    XMStoreFloat4((XMFLOAT4*)&_31, V3);
-    XMStoreFloat4((XMFLOAT4*)&_41, V4);
-
-    return *this;
-}
-
-//------------------------------------------------------------------------------
-
-inline XMFLOAT4X4A& XMFLOAT4X4A::operator=
-(
-    const XMFLOAT4X4A& Float4x4
-)
-{
-    XMVECTOR V1 = XMLoadFloat4A((const XMFLOAT4A*)&Float4x4._11);
-    XMVECTOR V2 = XMLoadFloat4A((const XMFLOAT4A*)&Float4x4._21);
-    XMVECTOR V3 = XMLoadFloat4A((const XMFLOAT4A*)&Float4x4._31);
-    XMVECTOR V4 = XMLoadFloat4A((const XMFLOAT4A*)&Float4x4._41);
-
-    XMStoreFloat4A((XMFLOAT4A*)&_11, V1);
-    XMStoreFloat4A((XMFLOAT4A*)&_21, V2);
-    XMStoreFloat4A((XMFLOAT4A*)&_31, V3);
-    XMStoreFloat4A((XMFLOAT4A*)&_41, V4);
-
-    return *this;
 }
 
