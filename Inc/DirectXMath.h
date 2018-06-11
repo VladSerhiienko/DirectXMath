@@ -15,6 +15,8 @@
 
 #define DIRECTX_MATH_VERSION 312
 
+#if !defined(__clang__) && !defined(__GNUC__)
+
 #if defined(_MSC_VER) && (_MSC_VER < 1900)
 #error DirectX Math requires Visual C++ 2015 or later.
 #endif
@@ -90,15 +92,11 @@
 #else
 
 #define __declspec(...)
-
 #define _XM_NO_INTRINSICS_
-
 #define XMGLOBALCONST static
-
 #define XM_CONST const
 #define XM_CONSTEXPR
 #define XM_CALLCONV
-#define XM_CTOR_DEFAULT =default;
 
 #endif
 
