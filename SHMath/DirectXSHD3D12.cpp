@@ -21,7 +21,7 @@
 
 #include <assert.h>
 #include <memory>
-#include <malloc.h>
+// #include <malloc.h>
 
 #include <wrl/client.h>
 
